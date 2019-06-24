@@ -46,7 +46,7 @@ namespace WebSiteMonitor.Service {
                 var worker = new BackgroundWorker();
                 worker.DoWork += WorkerDoWork;
                 worker.ProgressChanged += WorkerProgressChanged;
-                worker.RunWorkerCompleted += (s, e) => { };
+                worker.RunWorkerCompleted += RunWorkerCompleted;
                 worker.WorkerSupportsCancellation = true;
                 worker.WorkerReportsProgress = true;
                 if (_workers.TryAdd(item.Id, worker)) {
@@ -56,6 +56,12 @@ namespace WebSiteMonitor.Service {
                 }
             } else {
                 PingResult.SavePingResultState(item.Id, PingResult.WebSiteState.notChecked);
+            }
+        }
+
+        void RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
+            if (e.Error != null) {
+                Logger.AddError(e.Error.Message);
             }
         }
 
@@ -80,13 +86,19 @@ namespace WebSiteMonitor.Service {
             if (worker != null && data != null) {
                 while (worker.CancellationPending == false) {
                     var ping = new Ping();
-                    var result = ping.Send(data.Url, PING_TIMEOUT);
-                    if (worker.CancellationPending)
-                        continue;
-                    if (result.Status == IPStatus.Success) {
-                        worker.ReportProgress((int)result.RoundtripTime, data);
-                    } else {
-                        worker.ReportProgress(0, data);
+                    try {
+                        var result = ping.Send(data.Url, PING_TIMEOUT);
+                        if (worker.CancellationPending)
+                            continue;
+                        if (result.Status == IPStatus.Success) {
+                            worker.ReportProgress((int)result.RoundtripTime, data);
+                        } else {
+                            worker.ReportProgress(0, data);
+                        }
+                    } catch (PingException ex) {
+                        if (ex.InnerException != null) {
+                            throw new Exception(ex.Message + " " + ex.InnerException.Message + " " + data.Url);
+                        }
                     }
                     if (worker.CancellationPending)
                         continue;
