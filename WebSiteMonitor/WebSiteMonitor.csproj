@@ -174,17 +174,39 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Client\js\skins\fonts\fontawesome-webfont.eot" />
-    <Resource Include="Client\js\skins\fonts\fontawesome-webfont.ttf" />
-    <None Include="Client\js\skins\fonts\fontawesome-webfont.woff" />
-    <None Include="Client\js\skins\fonts\fontawesome-webfont.woff2" />
-    <None Include="Client\js\skins\fonts\PTS-bold.eot" />
-    <Resource Include="Client\js\skins\fonts\PTS-bold.ttf" />
-    <None Include="Client\js\skins\fonts\PTS-bold.woff" />
-    <None Include="Client\js\skins\fonts\PTS-webfont.eot" />
-    <Resource Include="Client\js\skins\fonts\PTS-webfont.ttf" />
-    <None Include="Client\js\skins\fonts\PTS-webfont.woff" />
-    <None Include="Client\js\webix.js.map" />
+    <None Include="Client\js\skins\fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Client\js\skins\fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Client\js\skins\fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Client\js\skins\fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Client\js\skins\fonts\PTS-bold.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Client\js\skins\fonts\PTS-bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Client\js\skins\fonts\PTS-bold.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Client\js\skins\fonts\PTS-webfont.eot">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Resource Include="Client\js\skins\fonts\PTS-webfont.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <None Include="Client\js\skins\fonts\PTS-webfont.woff">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Client\js\webix.js.map">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="DataBase.fbd">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -200,25 +222,61 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Client\login.html" />
+    <Content Include="Client\login.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="PingTable.ico" />
-    <Resource Include="Client\favicon.ico" />
-    <Content Include="Client\home.html" />
-    <Content Include="Client\js\guiDisign.js" />
-    <Content Include="Client\js\i18n\en.js" />
-    <Content Include="Client\js\i18n\ru.js" />
-    <Content Include="Client\js\jquery.min.js" />
-    <Content Include="Client\js\legacy\excanvas\excanvas.js" />
-    <Content Include="Client\js\legacy\swfobject.js" />
-    <Content Include="Client\js\legacy\uploader.swf" />
-    <Content Include="Client\js\md5.js" />
-    <Content Include="Client\js\skin.js" />
-    <Resource Include="Client\js\skins\fonts\font-license.txt" />
-    <Content Include="Client\js\skins\fonts\fontawesome-webfont.svg" />
-    <Content Include="Client\js\skins\web.css" />
-    <Content Include="Client\js\supportUtils.js" />
-    <Content Include="Client\js\webix.js" />
-    <Content Include="Client\js\webix_debug.js" />
+    <Resource Include="Client\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Client\home.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\guiDisign.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\i18n\en.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\i18n\ru.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\jquery.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\legacy\excanvas\excanvas.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\legacy\swfobject.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\legacy\uploader.swf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\md5.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\skin.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Client\js\skins\fonts\font-license.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="Client\js\skins\fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\skins\web.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\supportUtils.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\webix.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Client\js\webix_debug.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
