@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<architect-project version="1.0" appversion="1.0.8">
+ <project-name>ER</project-name>
+ <print-settings numCopies="1" zoom="1.0" pageNumbersPrinted="true" orientation="1" paperWidth="612.0" paperHeight="792.0" leftBorder="50.0" rightBorder="50.0" topBorder="50.0" bottomBorder="50.0" />
+ <project-data-sources>
+  <data-source id="DS0">
+   <property key="Logical" value="PlayPen Database" />
+  </data-source>
+ </project-data-sources>
+ <source-databases>
+ </source-databases>
+ <target-database id="ppdb" dbcs-ref="DS0">
+  <table id="TAB1" populated="true" UUID="ff220d1f-5bfc-4246-91e1-2dc4b59e2cbb" name="Веб сайт" objectType="TABLE" physicalName="web_site" >
+   <remarks>Web site</remarks>
+   <folder id="FOLTAB11" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL2" populated="true" UUID="2adebd5a-b81d-4be5-8d25-1d6d803ec913" autoIncrement="false" autoIncrementSequenceName="web_site_id_seq" defaultValue="" name="Id" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Id</remarks>
+    </column>
+    <column id="COL3" populated="true" UUID="a64919c9-6cad-475c-8132-82da4934240b" autoIncrement="false" autoIncrementSequenceName="web_site_name_seq" defaultValue="" name="Название" nullable="0" physicalName="name" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Name</remarks>
+    </column>
+    <column id="COL4" populated="true" UUID="ac552b7f-6877-41e9-b606-38fe27c73b47" autoIncrement="false" autoIncrementSequenceName="web_site_url_seq" defaultValue="" name="Адрес" nullable="0" physicalName="url" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Url</remarks>
+    </column>
+    <column id="COL5" populated="true" UUID="e17f2185-2aee-45bf-aa7c-9df43ce095ce" autoIncrement="false" autoIncrementSequenceName="web_site_ping_interval_seq" defaultValue="" name="Интервал проверки" nullable="0" physicalName="ping_interval" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Request interval, sec</remarks>
+    </column>
+    <column id="COL6" populated="true" UUID="547d4984-29fb-4188-afdd-6135dc83e650" autoIncrement="false" autoIncrementSequenceName="web_site_order_number_seq" defaultValue="" name="Порядковый номер" nullable="0" physicalName="order_number" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Order number</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB13" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX7" populated="true" UUID="715a95c8-f75b-43af-9d24-9eebf369e162" clustered="false" name="web_site_pk" physicalName="web_site_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC8" populated="true" UUID="08ecaa37-d834-4bb5-8aef-6f663e8dc24e" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="Id" physicalName="id" />
+    </index>
+    <index id="IDX9" populated="true" UUID="f8ca58f8-ba26-4684-8cb6-c2dab9972900" clustered="false" name="web_site_uniq" physicalName="web_site_uniq" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC10" populated="true" UUID="1becc2cc-a55d-41e9-99fc-4463777cbeed" ascendingOrDescending="UNSPECIFIED" column-ref="COL3" name="Название" physicalName="name" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB11" populated="true" UUID="2f00db46-d858-4a6c-afa6-6deb5489f0e7" name="Результаты проверки" objectType="TABLE" physicalName="ping_result" >
+   <remarks>Результаты проверки</remarks>
+   <folder id="FOLTAB111" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL12" populated="true" UUID="70f19bd6-cd08-4bae-93b2-bfc90c5eb9b8" autoIncrement="false" autoIncrementSequenceName="web_site_web_site_id_seq" defaultValue="" name="Id сайта" nullable="0" physicalName="web_site_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Id</remarks>
+    </column>
+    <column id="COL13" populated="true" UUID="8dc10741-df57-4284-bc23-de83dfee2668" autoIncrement="false" autoIncrementSequenceName="ping_result_ping_date_seq" defaultValue="" name="Дата проверки" nullable="0" physicalName="ping_date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="93" userDefinedTypeUUID="6497d8de-0e00-40d6-a42e-e2adca83be64" >
+     <remarks>Response datetime</remarks>
+    </column>
+    <column id="COL14" populated="true" UUID="87a9fe2a-e787-4077-93fc-65a3af089200" autoIncrement="false" autoIncrementSequenceName="ping_result_ping_seq" defaultValue="" name="Время ответа" nullable="0" physicalName="ping" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Response time, ms</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB113" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB112" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB114" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX15" populated="true" UUID="0a2e8c6e-8f81-4d55-882a-c78c03526f93" clustered="false" name="ping_result_pk" physicalName="ping_result_pk" primaryKeyIndex="true" unique="false" >
+    </index>
+    <index id="IDX16" populated="true" UUID="e2e86af2-8215-4dda-a799-3ad003fce12b" clustered="false" name="ping_result_uniq" physicalName="ping_result_uniq" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC17" populated="true" UUID="aa162c2d-f755-4219-b5d0-18f3f1a951c1" ascendingOrDescending="UNSPECIFIED" column-ref="COL12" name="Id сайта" physicalName="web_site_id" />
+     <index-column id="IDC18" populated="true" UUID="83609a40-8243-4d14-b9c1-3442ca58b705" ascendingOrDescending="UNSPECIFIED" column-ref="COL13" name="Дата проверки" physicalName="ping_date" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB19" populated="true" UUID="1a528e23-4361-4f55-9011-546a22041d95" name="Пользователи" objectType="TABLE" physicalName="users" >
+   <remarks>Users</remarks>
+   <folder id="FOLTAB191" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL20" populated="true" UUID="6a09c2fa-0dcc-4d47-b110-3a5e22a6c1d3" autoIncrement="false" autoIncrementSequenceName="local_seq_1" defaultValue="" name="Id пользователя" nullable="0" physicalName="id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Id</remarks>
+    </column>
+    <column id="COL21" populated="true" UUID="3b380948-5045-4a7e-928c-a22af19dd446" autoIncrement="false" autoIncrementSequenceName="users__seq" defaultValue="" name="Имя" nullable="0" physicalName="name" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>User name</remarks>
+    </column>
+    <column id="COL22" populated="true" UUID="50d5fa9e-e24b-4099-b586-74396f056e5b" autoIncrement="false" autoIncrementSequenceName="users__seq_1" defaultValue="" name="Логин" nullable="0" physicalName="login" precision="100" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Login</remarks>
+    </column>
+    <column id="COL23" populated="true" UUID="01a546b3-8bea-4ecb-9706-970669deec8d" autoIncrement="false" autoIncrementSequenceName="users__seq_2" defaultValue="" name="Пароль" nullable="0" physicalName="password" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>Password</remarks>
+    </column>
+    <column id="COL24" populated="true" UUID="1f8420c7-9a6b-4fef-93d1-65cd0ddda097" autoIncrement="false" autoIncrementSequenceName="users_is_admin_seq" defaultValue="" name="Это админ" nullable="0" physicalName="is_admin" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="5" userDefinedTypeUUID="69fb547f-e14c-4748-9746-4c0e9e94eb52" >
+     <remarks>Is admin</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB193" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB192" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB194" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX25" populated="true" UUID="627849c2-5bfd-4d83-aa10-de5bcb51f0c1" clustered="false" name="users_pk" physicalName="users_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC26" populated="true" UUID="39f64393-1fad-4b88-8a6a-a2ea31e89c35" ascendingOrDescending="UNSPECIFIED" column-ref="COL20" name="Id пользователя" physicalName="id" />
+    </index>
+    <index id="IDX27" populated="true" UUID="dd2fb186-79d2-478a-a355-9aac4de29233" clustered="false" name="users_uniq" physicalName="users_uniq" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC28" populated="true" UUID="3a2b8c0e-9dee-47b8-879f-be88efa494d4" ascendingOrDescending="UNSPECIFIED" column-ref="COL22" name="Логин" physicalName="login" />
+    </index>
+   </folder>
+  </table>
+  <table id="TAB29" populated="true" UUID="86719fd2-1a49-408a-bf0f-8e2f8b7e323a" name="Состояние сайта" objectType="TABLE" physicalName="web_site_state" >
+   <remarks>Website state</remarks>
+   <folder id="FOLTAB291" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL30" populated="true" UUID="be71b653-2a82-485f-a003-693ebf4e7c3b" autoIncrement="false" autoIncrementSequenceName="web_site_state_Id_seq" defaultValue="" name="Id" nullable="0" physicalName="Id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+     <remarks>Id</remarks>
+    </column>
+    <column id="COL31" populated="true" UUID="2b126593-a6a9-4d99-98be-85541f0bc387" autoIncrement="false" autoIncrementSequenceName="web_site_state_name_seq" defaultValue="" name="Название" nullable="0" physicalName="name" precision="200" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+     <remarks>State name</remarks>
+    </column>
+    </folder>
+    <folder id="FOLTAB293" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    </folder>
+    <folder id="FOLTAB292" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    </folder>
+    <folder id="FOLTAB294" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX32" populated="true" UUID="2b0f5831-1cf4-4e8b-8381-36618a3c7ff0" clustered="false" name="web_site_state_pk" physicalName="web_site_state_pk" primaryKeyIndex="true" unique="false" >
+     <index-column id="IDC33" populated="true" UUID="ae5646ce-9565-4148-91a8-3cc55914a0ac" ascendingOrDescending="UNSPECIFIED" column-ref="COL30" name="Id" physicalName="Id" />
+    </index>
+    <index id="IDX34" populated="true" UUID="25b73500-35ba-4f87-85d6-9717d0a0ccbc" clustered="false" name="web_site_state_uniq" physicalName="web_site_state_uniq" primaryKeyIndex="false" unique="true" >
+     <index-column id="IDC35" populated="true" UUID="a179e9ea-cdc9-469c-bed5-fab5aac85eb1" ascendingOrDescending="UNSPECIFIED" column-ref="COL31" name="Название" physicalName="name" />
+    </index>
+   </folder>
+  </table>
+  <relationships>
+   <relationship id="REL36" populated="true" UUID="2da2b625-0406-475f-9c10-8a43dbc2ff40" deferrability="7" deleteRule="3" fk-table-ref="TAB11" fkCardinality="7" identifying="false" name="web_site_ping_result_fk" physicalName="web_site_ping_result_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP37" populated="true" UUID="884c81a8-532e-4f63-aef3-3095797b3bca" fk-column-ref="COL12" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL20" />
+   </relationship>
+  </relationships>
+ </target-database>
+ <ddl-generator type="ca.sqlpower.architect.ddl.DB2DDLGenerator" allow-connection="false"> </ddl-generator>
+ <liquibase-settings useSeparateChangeSets="false" generateId="false" idStart="1"/>
+ <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
+ <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
+  <table-pane table-ref="TAB1" x="173" y="133" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB11" x="561" y="143" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB19" x="79" y="256" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB29" x="473" y="317" bgColor="0xeeeeee" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL36" pkConnection="0.4588235294117647" fkConnection="0.5116279069767442" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+ </play-pen>
+ <critic-manager>
+  <critic-grouping platformType="Generic" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PrimaryKeyCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.RelationshipMappingTypeCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.EmptyRelationshipCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.AlphaNumericSequenceNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetDefaultOnColumnWithNoDefaultCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SetNullOnNonNullableColumnCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DuplicateNameCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="DB2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.DB2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="H2" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.H2UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="HSQLDB" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.HSQLDBUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="MySQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLCommentCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.MySQLUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="Oracle" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OraclePhysicalNameCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleReservedWordsCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.OracleUnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="PostgreSQL" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.PostgreSQLReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerUnsupportedFeaturesCritic" severity="ERROR"/>
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServerReservedWordsCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2000" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2000UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+  <critic-grouping platformType="SQL Server 2005" enabled="true">
+   <critic-settings class="ca.sqlpower.architect.ddl.critic.impl.SQLServer2005UnsupportedFeaturesCritic" severity="ERROR"/>
+  </critic-grouping>
+ </critic-manager>
+ <profiles topNCount="10">
+  </profiles>
+  <olap>
+  </olap>
+  <olap-gui>
+  </olap-gui>
+</architect-project>

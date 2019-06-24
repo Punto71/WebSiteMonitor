@@ -1,0 +1,209 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="js/skins/web.css" type="text/css" media="screen"/>
+	<script src="js/webix.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/supportUtils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/guiDisign.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta  name = "viewport" content = "initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript" charset="utf-8">
+
+        var _threadId = "";
+        var _detailsThreadId = "";
+
+        loadLocales();
+        loadUI();
+        loadWebSiteInfo();
+
+        function loadUI() {
+            var cmenu = webix.ui(context);
+            if (webix.env.touch) {
+                webix.ui.fullScreen();
+                webix.ui(mobileUI);
+                var table = $$('websiteTable');
+                table.hideColumn("last_date");
+                table.hideColumn("avg_response_time");
+                table.setColumnWidth("state", 60);
+                table.hideColumn("name");
+                table.showColumn("name");
+            } else {
+                webix.ui(desktopUI);
+            }
+            attachEvents();
+            $$('websiteTable').sort("#order_number#", "asc", "int");
+            if (localStorage.is_admin == "true")
+                cmenu.attachTo($$('websiteTable'));
+            else
+                $$('addWebSite').hide();
+        }
+
+        function logout() {
+            sendGet("logout");
+            localStorage.clear();
+            window.location = "login.html";
+        }
+
+        function loadWebSiteInfo() {
+            clearInterval(_threadId);
+            clearInterval(_detailsThreadId);
+            sendGet("website/all", function (res, code) {
+                if (!code || code == 200) {
+                    var gridView = $$('websiteTable');
+                    var source = toObject(res);
+                    gridView.clearAll();
+                    gridView.define("data", prepareDataSourceDateTime(source));
+                    runChengesMonitor();
+                    gridView.select(gridView.getFirstId());
+                } else if (code == 404) {
+                    webix.message(JSON.parse(res));
+                }
+            });
+        }
+
+
+        function runChengesMonitor() {
+            _threadId = setInterval(checkChanges, 1000);
+        }
+
+        function checkChanges() {
+            var idList = [];
+            var table = $$('websiteTable');
+            table.eachRow(function (row) {
+                idList.push(row);
+            });
+            sendPost("website/changes", JSON.stringify(idList), function (res, code) {
+                var data = toObject(res);
+                for (i in data) {
+                    var item = data[i];
+                    var row = table.getItem(item.id);
+                    if (!item.is_removed) {
+                        for (var pty in prepareItemDateTime(item.changes)) {
+                            row[pty] = item.changes[pty];
+                        }
+                    }
+                }
+                table.refresh();
+            });
+        }
+
+        function loadDetails(webSiteId) {
+            clearInterval(_detailsThreadId);
+            var table = $$('websiteDetailsTable');
+            table.clearAll();
+            if (webSiteId > 0) {
+                var url = "website/" + webSiteId + "/details_count";
+                sendPost(url, JSON.stringify(100), function (res) {
+                    var source = prepareDataSourceDateTime(toObject(res));
+                    table.define("data", source);
+                    date = new Date();
+                    if (source.length > 0)
+                        date = source[0]["Key"]
+                    runDetailsWorker(webSiteId, date);
+                });
+            }
+        }
+
+        function runDetailsWorker(webSiteId, date) {
+            var table = $$('websiteDetailsTable');
+            var url = "website/" + webSiteId + "/details_date";
+            _detailsThreadId = setInterval(function () {
+                sendPost(url, JSON.stringify(getAbsoluteDate(date)), function (res) {
+                    var source = prepareDataSourceDateTime(toObject(res));
+                    for (i in source) {
+                        table.add(source[i], 0);
+                        if (source[i].Key > date)
+                            date = source[i].Key;
+                    }
+                });
+            }, 1000);
+        }
+
+        function clearHistory(webSiteId, webSiteName) {
+            if (webSiteId > 0) {
+                webix.confirm({
+                    text: "Clear all history for " + webSiteName,
+                    callback: function (res) {
+                        if (res) {
+                            sendGet("website/" + webSiteId + "/clear_history", function () {
+                                if ($$('websiteTable').getSelectedId() == webSiteId) {
+                                    loadDetails(webSiteId);
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        function showEditor(entityName, formName, itemId) {
+            var url = itemId > 0 ? "editor/edit/"+ entityName +"/" + itemId :"editor/new/" + entityName;
+            sendGet(url, function (res) {
+                var source = toObject(res);
+                prepareTextPattern(source.elements);
+                source.elements.push(formButtons);
+                editForm.elements = source.elements;
+                editForm.rules = source.rules;
+                modalEditor.body = editForm;
+                modalEditor.head = formName;
+                var form = webix.ui(modalEditor)
+                $$("editForm").setValues(prepareItemDateTime(source.item));
+                form.show();
+                $$("cancelButton").attachEvent("onItemClick", function (id, e, node) {
+                    $$("modalEditor").close();
+                });
+                $$("saveButton").attachEvent("onItemClick", function (id, e, node) {
+                    if ($$("editForm").validate()) {
+                        var obj = $$("editForm").getValues();
+                        saveElement(entityName, obj);
+                    }
+                });
+            });
+        }
+
+        function saveElement(entityName, element) {
+            var text = JSON.stringify(changeDateToAbsolute(element));
+            sendPut("editor/save/" + entityName, text, function (res) {
+                if (res.status && res.status != 200) {
+                    if (res.status == 409)
+                        webix.message(res.responseJSON, "error");
+                } else {
+                    element.id = element.ID = res;
+                    $$("modalEditor").close();
+                    var table = $$('websiteTable');
+                    var row = table.getItem(res);
+                    var isNew = !row
+                    if (isNew) {
+                        row = {avg_response_time: 0, availability_pct:0, state: "not checked"};
+                    }
+                    for (var i in element) {
+                        row[i.toLowerCase()] = element[i];
+                    }
+                    if (isNew)
+                        table.add(row);
+                    table.sort("#order_number#", "asc", "int");
+                    table.refresh();
+                }
+            });
+        }
+
+        function deleteElement(entityName, itemId, elementName) {
+            if (itemId > 0) {
+                webix.confirm({
+                    text: "Delete all data and history for " + elementName,
+                    callback: function (res) {
+                        if (res) {
+                            sendGet("editor/delete/" + entityName + "/" + itemId);
+                            $$('websiteTable').remove(itemId);
+                        }
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+</html>

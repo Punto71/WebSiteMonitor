@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link rel="stylesheet" href="js/skins/web.css" type="text/css" media="screen"/>
+	<script src="js/webix.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/supportUtils.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta  name = "viewport" content = "initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+    <title></title>
+</head>
+<body>
+    <script>
+        function loadUI() {
+            webix.ui.fullScreen();
+            webix.ui(appui);
+        }
+
+        function login() {
+            var user = $$("login").getValue();
+            var password = md5($$("password").getValue());
+            var url = "login?&username=" + user + "&password=" + password;
+            var http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.onreadystatechange = function () {
+                if (http.readyState == 4) {
+                    if (http.status == 200) {
+                        var response = JSON.parse(http.response);
+                        localStorage.token = response.access_token;
+                        localStorage.is_admin = response.is_admin;
+                        document.open(response.url, "_self", "", false);
+                    }
+                    else if (http.status == 403 || http.status == 401) {
+                        var response = JSON.parse(http.response);
+                        webix.message({
+                            type: "error",
+                            text: response.error
+                        });
+                    }
+                }
+            };
+            http.send();
+        }
+
+        var appui = webix.ui({
+            rows: [{}, {
+                cols: [
+                      {}, //left spacer
+                  {view:"form", 
+                      elements:[
+                  {
+                      width: 300,
+                      rows: [
+                          { view: "text", label: "Login", id: "login" },
+                          { view: "text", type: "password", label: "Password", id: "password" },
+                          {
+                              margin: 3, cols: [
+                                {
+                                    view: "button", value: "Login", hotkey: "enter", on: {
+                                        onItemClick: login
+                                    }},
+                              ]
+                          }
+                      ]
+                  }]},
+                      {}//right spacer
+                      ]
+                  }, {}],
+        });
+        </script>
+</body>
+</html>
